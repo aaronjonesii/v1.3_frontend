@@ -1,0 +1,25 @@
+<mat-nav-list>
+  <div *ngFor="let page of items">
+
+    <a class="eva-parent-hover" *ngIf="page.link" routerLink="{{page.link}}" mat-list-item (click)="closeBottomSheet()">
+      <span mat-line>{{ page.title }}</span>
+      <span class="text-muted" mat-line>{{ page.desc }}</span>
+      <i
+              class="icon"
+              [innerHTML]="page.icon | eva: { animationType: 'pulse', fill: '#5bc0de', animationHover: 'true', animationInfinity: 'true' }"
+      ></i>
+    </a>
+
+
+    <a class="eva-parent-hover" *ngIf="page.url" href="https://blog.anonsys.tech" mat-list-item (click)="closeBottomSheet()">
+      <span mat-line>{{ page.title }}</span>
+      <span class="text-muted" mat-line>{{ page.desc }}</span>
+      <i
+              class="icon"
+              [innerHTML]="page.icon | eva: { animationType: 'pulse', fill: '#5bc0de', animationHover: 'true', animationInfinity: 'true' }"
+      ></i>
+    </a>
+
+
+  </div>
+</mat-nav-list>

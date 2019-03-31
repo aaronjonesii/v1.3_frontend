@@ -12,18 +12,23 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptorService } from './core/services/token-interceptor.service';
 import { TodoComponent } from './pages/todo/todo.component';
 import { AuthGuardService } from './core/services/authenticationguard.service';
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { BottomSheetComponent } from "./pages/home/bottom-sheet/bottom-sheet.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    TodoComponent
+    TodoComponent,
+    BottomSheetComponent
   ],
   imports: [
     BrowserModule,
 
     AppRoutingModule,
-    SharedModule,
+    SharedModule.forRoot(),
+    NgbModule.forRoot(),
+
   ],
   providers: [
     AuthGuardService,

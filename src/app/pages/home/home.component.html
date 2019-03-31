@@ -1,36 +1,50 @@
-<div class="container">
-  <div class="text-center display-4">
-    <h1>Angular + NGRX</h1>
-  </div>
-    <hr><br>
+<nb-layout>
+  <nb-layout-column class="p-0">
 
-  <div *ngIf="isAuthenticated; then doSomething; else doSomethingElse;"> </div>
-    <ng-template #doSomething>
-      <p>You logged in <em>{{ user?.username || null }}!</em></p>
-      <button class="btn btn-primary" (click)="logout()">Log out</button>
-      <button class="btn btn-secondary ml-2" routerLink="todo">ToDo List</button>
-    </ng-template>
+    <div id="main-wrapper" class="vh-100 d-flex justify-content-center" style="background-image: url('assets/imgs/cosmic-nebular_1080.png');">
 
-    <ng-template #doSomethingElse>
-      <div class="d-flex justify-content-around">
-        <a [routerLink]="['/login']" class="btn btn-primary">Log in</a>
-        <a [routerLink]="['/signup']" class="btn btn-primary">Sign up</a>
+      <div class="w-100 d-flex justify-content-around align-items-center text-white" id="wrapper">
+
+          <!-- Left Side -->
+          <div class="w-50 text-center" id="leftSide">
+              <img class="img-responsive" id="logo" width="30%" src="assets/imgs/logo.png" (dblclick)="openBottomSheet()" />
+              <div class="logo-text h4 m-0"> Welcome to </div>
+              <div class="logo-text display-4 element">  </div>
+          </div>
+
+          <!-- Right Side -->
+          <div class="w-50 card bg-transparent border-0" id="rightSide">
+              <img class="img-responsive card-img mx-auto" id="macbook" src="assets/imgs/MacBookPro_mojave_768.png" />
+              <div class="card-img-overlay mx-auto d-flex flex-column text-center" id="macbook-screen">
+                    <!-- TopBar -->
+                  <div class="row mb-auto d-flex justify-content-end small" id="macbook-topbar">
+                      <p> 99% <i style="margin-top: -4px;" class="icon" data-eva="charging" data-eva-height="16" data-eva-width="18"></i> </p>
+                      <p> <i style="margin-top: -4px;" class="icon" data-eva="wifi" data-eva-height="16" data-eva-width="18"></i> </p>
+                      <p> {{ today | date: 'EEE LLL d' }} </p>
+                      <time> {{ today | date: 'shortTime' }} </time>
+                  </div>
+                        <!-- Middle -->
+                      <div class="mx-auto" id="user-login">
+                        <img class="rounded-circle" src="assets/imgs/Chalk_UserPicture.png" width="10%">
+                          <br />
+                      <form (dblclick)="openBottomSheet()" aria-label="Navigation-Hint">
+                        <input class="mt-2 password-field rounded border-0 p-1" type="text" placeholder="Enter Password" autocomplete="off" size="10"/>
+                      </form>
+                      </div>
+                        <!-- Cancel -->
+                      <div class="mt-auto mx-auto" id="cancel-login">
+                          <i class="icon" data-eva="close-circle-outline"></i>
+                          <p class="font-weight-bolder" id="cancel_text">Cancel</p>
+                      </div>
+
+
+                  <!--<p class="text-primary p-4"> <anon-music></anon-music> </p>-->
+              </div>
+          </div>
+
       </div>
-    </ng-template>
 
-
-  <div class="card w-75 mt-2 mx-auto">
-    <div class="card-body">
-      <h5 class="card-title">Current State</h5>
-      <ul>
-        <li><strong>isAuthenticated</strong> - {{ isAuthenticated }}</li>
-        <li><strong>user</strong> - {{ (user | json) || 'null' }}</li>
-        <li><strong>errorMessage</strong> - {{ errorMessage || 'null' }}</li>
-        <li><strong>redirectURL</strong> - {{ redirectURL || 'null' }}</li>
-      </ul>
     </div>
-  </div>
 
-
-
-</div>
+  </nb-layout-column>
+</nb-layout>
