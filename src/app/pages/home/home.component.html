@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="text-center display-4">
+    <h1>Angular + NGRX</h1>
+  </div>
+    <hr><br>
+
+  <div *ngIf="isAuthenticated; then doSomething; else doSomethingElse;"> </div>
+    <ng-template #doSomething>
+      <p>You logged in <em>{{ user?.username || null }}!</em></p>
+      <button class="btn btn-primary" (click)="logout()">Log out</button>
+      <button class="btn btn-secondary ml-2" routerLink="todo">ToDo List</button>
+    </ng-template>
+
+    <ng-template #doSomethingElse>
+      <div class="d-flex justify-content-around">
+        <a [routerLink]="['/login']" class="btn btn-primary">Log in</a>
+        <a [routerLink]="['/signup']" class="btn btn-primary">Sign up</a>
+      </div>
+    </ng-template>
+
+
+  <div class="card w-75 mt-2 mx-auto">
+    <div class="card-body">
+      <h5 class="card-title">Current State</h5>
+      <ul>
+        <li><strong>isAuthenticated</strong> - {{ isAuthenticated }}</li>
+        <li><strong>user</strong> - {{ (user | json) || 'null' }}</li>
+        <li><strong>errorMessage</strong> - {{ errorMessage || 'null' }}</li>
+        <li><strong>redirectURL</strong> - {{ redirectURL || 'null' }}</li>
+      </ul>
+    </div>
+  </div>
+
+
+
+</div>
