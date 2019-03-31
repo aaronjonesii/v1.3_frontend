@@ -1,0 +1,39 @@
+// themes - our custom or/and out of the box themes
+// @nebular theming framework
+@import '~@nebular/theme/styles/theming';
+// @nebular out of the box themes
+@import '~@nebular/theme/styles/themes';
+
+
+// framework component themes (styles tied to theme variables)
+@import '~@nebular/theme/styles/globals';
+@import '~@nebular/auth/styles/all';
+@import '~@nebular/bootstrap/styles/globals';
+
+@import '~bootstrap/scss/_variables';
+@import '~bootstrap/scss/mixins/_breakpoints';
+
+@import '~@nebular/auth/styles/all'; // or @import '~@nebular/auth/styles/{theme-name}';
+
+
+// install the framework and custom global styles
+@include nb-install() {
+
+  @include nb-auth-global(); // append the install mixin inside of the nb-install
+
+  // framework global styles
+  @include nb-theme-global();
+  @include nb-auth-global();
+  @include nb-bootstrap-global();
+
+
+  // fixed in rc.9 and can be removed after upgrade
+  .custom-control .custom-control-indicator {
+    border-radius: 50%; // TODO: quickfix for https://github.com/akveo/nebular/issues/275
+  }
+
+};
+
+// Material Theme
+// https://material.angular.io/guide/theming
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
