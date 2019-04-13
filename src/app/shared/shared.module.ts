@@ -1,4 +1,4 @@
-import {ModuleWithProviders, NgModule} from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthModule } from './auth/auth.module';
 import { HttpClientModule } from '@angular/common/http';
@@ -26,9 +26,9 @@ import { EvaPipe } from '../shared/pipes/eva.pipe';
 import { DEFAULT_THEME } from "../shared/styles/theme.default";
 import { COSMIC_THEME } from "../shared/styles/theme.cosmic";
 import { CORPORATE_THEME } from "../shared/styles/theme.corporate";
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {BottomSheetComponent} from "../pages/home/bottom-sheet/bottom-sheet.component";
-import {DragDropModule} from '@angular/cdk/drag-drop';
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { BottomSheetComponent } from "../pages/home/bottom-sheet/bottom-sheet.component";
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { StatusPipe } from './pipes/status.pipe';
 
 const NB_MODULES = [
@@ -93,7 +93,7 @@ const NB_THEME_PROVIDERS = [
 
 @NgModule({
   imports: [ ...BASE_MODULES, ...NB_MODULES, ...MAT_MODULES, AuthModule ],
-    exports: [...BASE_MODULES, ...NB_MODULES, ...MAT_MODULES, ...COMPONENTS, ...PIPES, StatusPipe,],
+    exports: [...BASE_MODULES, ...NB_MODULES, ...MAT_MODULES, ...COMPONENTS, ...PIPES, StatusPipe, ],
   declarations: [...PIPES, ...COMPONENTS, StatusPipe  ],
   entryComponents: [...ENTRY_COMPONENTS],
 })

@@ -6,7 +6,6 @@ export interface State {
   loaded: boolean; // Loaded?
   isAuthenticated: boolean; // User Logged In?
   user: User | null; // If authenticated, there should be a user object
-  tasks: object | null; // To store user tasks from websocket
   errorMessage: string | null; // error Message
 }
 
@@ -15,7 +14,6 @@ export const initialState: State = {
   loaded: false,
   isAuthenticated: false,
   user: null,
-  tasks: null,
   errorMessage: null
 };
 
@@ -47,15 +45,6 @@ export function reducer(state = initialState, action: All): State {
     case AuthActionTypes.SIGNUP_FAILURE: { return { ...state, errorMessage: 'That username is already in use.' }; }
     // Separator
     case AuthActionTypes.LOGOUT: { return initialState; }
-    // Separartor
-    case AuthActionTypes.INITIALIZE_WEBSOCKET_CONNECTION: { return { ...state, loading: true, loaded: false }; }
-    case AuthActionTypes.WEBSOCKET_CONNECTION_ESTABLISHED: { return { ...state, loading: false, loaded: true }; }
-    case AuthActionTypes.WEBSOCKET_CONNECTION_FAILED: { return { ...state, errorMessage: 'Failed to connect to websocket server' }; }
-    case AuthActionTypes.WEBSOCKET_CONNECTION_CLOSED: { return { ...state, errorMessage: 'Websocket connection closed' }; }
-    case AuthActionTypes.WEBSOCKET_LISTENER: { return { ...state, }; }
-    // Separator
-    case AuthActionTypes.REQUEST_USER_TASKS: { return { ...state, loading: true, loaded: false }; }
-    case AuthActionTypes.RECEIVED_USER_TASKS: { return { ...state, loading: false, loaded: true, tasks: JSON.parse(action.payload), errorMessage: null }; }
     // Separator
     default: { return state; }
   }

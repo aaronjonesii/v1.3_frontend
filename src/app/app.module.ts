@@ -16,22 +16,34 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { BottomSheetComponent } from "./pages/home/bottom-sheet/bottom-sheet.component";
 import { WebsocketService } from './core/services/websocket.service';
 import { TasksService } from './core/services/tasks.service';
+import { AUTH_COMPONENTS } from './shared/auth/auth.module';
+import { FormsModule } from '@angular/forms';
+import { StoreModule } from '@ngrx/store';
+import { reducers } from './app.state';
+import { CustomSerializer } from './shared/utils/storerouter';
+import { EffectsModule } from '@ngrx/effects';
+import { AuthEffects } from './shared/auth/state/auth.effects';
+import { TasksEffects } from './pages/todo/state/tasks.effects';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     TodoComponent,
-    BottomSheetComponent
+    BottomSheetComponent,
+    ...AUTH_COMPONENTS,
   ],
     imports: [
         BrowserModule,
-
+        FormsModule,
         AppRoutingModule,
         SharedModule.forRoot(),
         NgbModule.forRoot(),
         SharedModule,
-
+        StoreModule.forRoot(reducers),
+        !environment.production ? StoreDevtoolsModule.instrument() : [],
+        StoreRouterConnectingModule.forRoot({ serializer: CustomSerializer }),
+        EffectsModule.forRoot([AuthEffects, TasksEffects]),
     ],
   providers: [
     AuthGuardService,

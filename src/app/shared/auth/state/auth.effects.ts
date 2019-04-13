@@ -23,16 +23,13 @@ import {
     GetUserInfo,
     GetUserInfoSuccess,
     GetUserInfoFailure,
-    WebsocketConnectionClosed,
-    ReceivedUserTasks,
-    WebsocketConnectionEstablished,
     CheckAuthentication,
 } from './auth.actions';
 import { Observable, of } from 'rxjs';
 import { catchError, concatMap, flatMap, map, mapTo, mergeMap, switchMap, tap } from 'rxjs/operators';
-import {User} from '../../models/user';
-import {WebsocketService} from '../../../core/services/websocket.service';
-import {TasksService} from '../../../core/services/tasks.service';
+import { User } from '../../models/user';
+import { WebsocketService } from '../../../core/services/websocket.service';
+import { TasksService } from '../../../core/services/tasks.service';
 
 @Injectable()
 export class AuthEffects {
@@ -231,56 +228,6 @@ export class AuthEffects {
     ofType(AuthActionTypes.GET_USER_INFO_FAILURE),
     map((action: GetUserInfoFailure) => action.payload),
     map(() => new CheckAuthentication() )
-  );
-
-@Effect({ dispatch: false })
-  InitializeWebsocketConnection: Observable<any> = this.actions.pipe(
-    ofType(AuthActionTypes.INITIALIZE_WEBSOCKET_CONNECTION),
-    tap(() => this.websocketService.initializeWebsocketConnection() ),
-  );
-
-  @Effect({ dispatch: false })
-  WebsocketConnectionEstablished: Observable<any> = this.actions.pipe(
-    ofType(AuthActionTypes.WEBSOCKET_CONNECTION_ESTABLISHED),
-  );
-
-  @Effect({ dispatch: false })
-  WebsocketConnectionFailed: Observable<any> = this.actions.pipe(
-    ofType(AuthActionTypes.WEBSOCKET_CONNECTION_FAILED),
-  );
-
-  @Effect({ dispatch: false })
-  WebsocketConnectionClosed: Observable<any> = this.actions.pipe(
-    ofType(AuthActionTypes.WEBSOCKET_CONNECTION_CLOSED),
-    map((action: WebsocketConnectionClosed) => action.payload),
-    tap((error) => { alert('Websocket Connection Closed'); console.error(error); this.router.navigate(['/']); } ),
-  );
-
-  @Effect()
-  WebsocketListener: Observable<any> = this.actions.pipe(
-      ofType(AuthActionTypes.WEBSOCKET_LISTENER),
-      switchMap(() => this.websocketService.socket$.pipe(
-          map((msg: any) => {
-                  if (msg.type === 'TASKS') { return new ReceivedUserTasks(msg.data);
-                  } else { console.log('Received  message from websocket server => ', msg); }
-                }),
-          // catchError((error) => of( alert('Error from Websocket Listener => ' + JSON.stringify(error)) )), // {"isTrusted":true}
-          // catchError((error) => of( alert('Error from Websocket Listener => ' + error) )), // [object CloseEvent]
-          catchError((error) => { if (error.code === 1006) { return of(new WebsocketConnectionClosed(error)); } else { alert('Error from Websocket Listener other than 1006 error.code => ' + error); } } )  , // [object CloseEvent]
-      ) ),
-  );
-
-  @Effect({ dispatch: false })
-  RequestUserTasks: Observable<any> = this.actions.pipe(
-    ofType(AuthActionTypes.REQUEST_USER_TASKS),
-    map(() => this.websocketService.socket$.next({ 'type': 'view.tasks' }) ),
-  );
-
-  @Effect({ dispatch: false })
-  ReceivedUserTasks: Observable<any> = this.actions.pipe(
-    ofType(AuthActionTypes.RECEIVED_USER_TASKS),
-    tap((msgfromServer: ReceivedUserTasks) => this.tasksService.tasks = JSON.parse(msgfromServer.payload) ),
-    // tap((msg) => console.log(msg) ),
   );
 
 }

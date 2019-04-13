@@ -22,13 +22,6 @@ export enum AuthActionTypes {
   GET_USER_INFO                       =   '[AUTH] Get User Info',
   GET_USER_INFO_SUCCESS               =   '[AUTH] Get User Info Success',
   GET_USER_INFO_FAILURE               =   '[AUTH] Get User Info Failure',
-  INITIALIZE_WEBSOCKET_CONNECTION     =   '[WEBSOCKET] Initialize Websocket Connection',
-  WEBSOCKET_CONNECTION_ESTABLISHED    =   '[WEBSOCKET] Websocket Connection Established',
-  WEBSOCKET_CONNECTION_FAILED         =   '[WEBSOCKET] Websocket Connection Failed',
-  WEBSOCKET_CONNECTION_CLOSED         =   '[WEBSOCKET] Websocket Connection Closed',
-  WEBSOCKET_LISTENER                  =   '[WEBSOCKET] Websocket Listener',
-  REQUEST_USER_TASKS                  =   '[TASKS] Request User Tasks',
-  RECEIVED_USER_TASKS                 =   '[TASKS] Received User Tasks',
 }
 
 export class LogIn implements Action { readonly type = AuthActionTypes.LOGIN; constructor(public payload: any) {} }
@@ -51,13 +44,6 @@ export class LogOut implements Action { readonly type = AuthActionTypes.LOGOUT; 
 export class GetUserInfo implements Action { readonly type = AuthActionTypes.GET_USER_INFO; }
 export class GetUserInfoSuccess implements Action { readonly type = AuthActionTypes.GET_USER_INFO_SUCCESS; constructor(public payload: any) { } }
 export class GetUserInfoFailure implements Action { readonly type = AuthActionTypes.GET_USER_INFO_FAILURE; constructor(public payload: any) { } }
-export class InitializeWebsocketConnection implements Action { readonly type = AuthActionTypes.INITIALIZE_WEBSOCKET_CONNECTION; }
-export class WebsocketConnectionEstablished implements Action { readonly type = AuthActionTypes.WEBSOCKET_CONNECTION_ESTABLISHED; }
-export class WebsocketConnectionFailed implements Action { readonly type = AuthActionTypes.WEBSOCKET_CONNECTION_FAILED; }
-export class WebsocketConnectionClosed implements Action { readonly type = AuthActionTypes.WEBSOCKET_CONNECTION_CLOSED; constructor(public payload: any) { } }
-export class WebsocketListener implements Action { readonly type = AuthActionTypes.WEBSOCKET_LISTENER; }
-export class RequestUserTasks implements Action { readonly type = AuthActionTypes.REQUEST_USER_TASKS; }
-export class ReceivedUserTasks implements Action { readonly type = AuthActionTypes.RECEIVED_USER_TASKS; constructor(public payload: any) { } }
 
 
 export type All =
@@ -80,11 +66,4 @@ export type All =
   | LogOut
   | GetUserInfo
   | GetUserInfoSuccess
-  | GetUserInfoFailure
-  | InitializeWebsocketConnection
-  | WebsocketConnectionEstablished
-  | WebsocketConnectionFailed
-  | WebsocketConnectionClosed
-  | WebsocketListener
-  | RequestUserTasks
-  | ReceivedUserTasks;
+  | GetUserInfoFailure;
