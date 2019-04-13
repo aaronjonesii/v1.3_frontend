@@ -13,6 +13,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../../../environments/environment';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { CustomSerializer } from '../utils/storerouter';
+import { SharedModule } from '../shared.module';
 
 const AUTH_COMPONENTS = [
   LoginComponent,

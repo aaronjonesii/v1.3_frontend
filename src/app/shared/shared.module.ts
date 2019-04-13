@@ -28,6 +28,8 @@ import { COSMIC_THEME } from "../shared/styles/theme.cosmic";
 import { CORPORATE_THEME } from "../shared/styles/theme.corporate";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {BottomSheetComponent} from "../pages/home/bottom-sheet/bottom-sheet.component";
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import { StatusPipe } from './pipes/status.pipe';
 
 const NB_MODULES = [
   NbCardModule,
@@ -67,7 +69,7 @@ const MAT_MODULES = [
 ]
 
 
-const BASE_MODULES = [ CommonModule, HttpClientModule, BrowserAnimationsModule ];
+const BASE_MODULES = [ CommonModule, HttpClientModule, BrowserAnimationsModule, DragDropModule ];
 
 const COMPONENTS = [ ];
 
@@ -90,9 +92,9 @@ const NB_THEME_PROVIDERS = [
 ];
 
 @NgModule({
-  imports: [ AuthModule, ...BASE_MODULES, ...NB_MODULES, ...MAT_MODULES, ],
-  exports: [ ...BASE_MODULES, ...NB_MODULES, ...MAT_MODULES, ...COMPONENTS, ...PIPES, ],
-  declarations: [...PIPES, ...COMPONENTS  ],
+  imports: [ ...BASE_MODULES, ...NB_MODULES, ...MAT_MODULES, AuthModule ],
+    exports: [...BASE_MODULES, ...NB_MODULES, ...MAT_MODULES, ...COMPONENTS, ...PIPES, StatusPipe,],
+  declarations: [...PIPES, ...COMPONENTS, StatusPipe  ],
   entryComponents: [...ENTRY_COMPONENTS],
 })
 export class SharedModule {

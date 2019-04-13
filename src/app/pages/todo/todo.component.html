@@ -1,28 +1,275 @@
+<nb-layout id="main-wrapper">
+  <nb-layout-column class="p-0">
+
+<div class="container-fluid row" id="">
+  <div class="d-flex col justify-content-start m-3">
+    <button class="btn btn-primary" routerLink="/">Go Home</button>
+  </div>
+    <div class="d-flex col justify-content-center align-items-center lead">
+        <p class="lead"> SCRUM Project Management </p>
+    </div>
+    <div class="d-flex col justify-content-end m-3">
+      <button class="btn btn-info mr-3" (click)="refreshTasks()">Refresh Tasks</button>
+      <button class="btn btn-danger" (click)="logout()">Log out</button>
+    </div>
+</div>
+
+<div cdkDropListGroup>
+
+<div class="container-fluid">
+  <div class="row d-flex justify-content-around">
+
+<!-- BackLog Section -->
+<!-- Category List Section -->
+<div class="d-flex flex-column align-items-center col-md-3">
+<div class="text-center mt-5 w-75">
+    <div class="lead text-danger"> BackLog </div>
+    <hr />
+</div>
+
+<div class="" *ngIf="tasks">
+  <nb-reveal-card class="w-100" *ngFor="let task of (tasks | status:'BACKLOG')">
+    <nb-card-front>
+      <nb-card accent="danger">
+        <nb-card-body>
+
+          <div class="row d-flex align-content-center">
+            <nb-checkbox class="col-1" status="success" value="false"></nb-checkbox>
+            <div class="h6 text-primary col-10 m-0 align-self-center"> {{ task.fields.title }} </div>
+          </div>
+
+        </nb-card-body>
+      </nb-card>
+    </nb-card-front>
+
+    <nb-card-back>
+      <nb-card accent="danger">
+        <nb-card-body class="">
+
+          <div class="row justify-content-center">
+            <div class="col-1 icons">
+              <i class="" data-eva="edit-outline" data-eva-fill="grey" data-eva-width="16"></i>
+              <i class="" data-eva="close-circle-outline" data-eva-fill="red" data-eva-width="16"></i>
+            </div>
+
+            <p class="text-primary todo-desc col-10 align-self-center small"> {{ task.fields.description }} </p>
+
+          </div>
+        </nb-card-body>
+      </nb-card>
+    </nb-card-back>
+  </nb-reveal-card>
+
+<!--  <nb-card>-->
+<!--    <nb-card-header>-->
+      <button class="btn btn-success mr-3" (click)="tasksService.createTask()">Add Task</button>
+<!--    </nb-card-header>-->
+<!--  </nb-card>-->
+</div>
+
+</div>
+
+
+
+
+<!-- UpNext Section -->
+<!-- Category List Section -->
+<div class="d-flex flex-column align-items-center col-md-3">
+<div class="text-center mt-5 w-75">
+    <div class="lead text-primary"> UpNext </div>
+    <hr />
+</div>
+
+  <div class="" *ngIf="tasks">
+    <nb-reveal-card class="w-100" *ngFor="let task of (tasks | status:'UP_NEXT')">
+      <nb-card-front>
+        <nb-card accent="primary">
+          <nb-card-body>
+
+            <div class="row d-flex align-content-center">
+              <nb-checkbox class="col-1" status="success" value="false"></nb-checkbox>
+              <div class="h6 text-primary col-10 m-0 align-self-center"> {{ task.fields.title }} </div>
+            </div>
+
+          </nb-card-body>
+        </nb-card>
+      </nb-card-front>
+
+      <nb-card-back>
+        <nb-card accent="primary">
+          <nb-card-body class="">
+
+            <div class="row justify-content-center">
+              <div class="col-1 icons">
+                <i class="" data-eva="edit-outline" data-eva-fill="grey" data-eva-width="16"></i>
+                <i class="" data-eva="close-circle-outline" data-eva-fill="red" data-eva-width="16"></i>
+              </div>
+
+              <p class="text-primary todo-desc col-10 align-self-center small"> {{ task.fields.description }} </p>
+
+            </div>
+          </nb-card-body>
+        </nb-card>
+      </nb-card-back>
+    </nb-reveal-card>
+  </div>
+
+</div>
+
+
+
+
+<!-- ToDo Section -->
+<!-- Category List Section -->
+<div class="d-flex flex-column align-items-center col-md-3">
+<div class="text-center mt-5 w-75">
+    <div class="lead text-warning"> ToDo </div>
+    <hr />
+</div>
+
+  <div class="" *ngIf="tasks">
+    <nb-reveal-card class="w-100" *ngFor="let task of (tasks | status:'TODO')">
+      <nb-card-front>
+        <nb-card accent="warning">
+          <nb-card-body>
+
+            <div class="row d-flex align-content-center">
+              <nb-checkbox class="col-1" status="success" value="false"></nb-checkbox>
+              <div class="h6 text-primary col-10 m-0 align-self-center"> {{ task.fields.title }} </div>
+            </div>
+
+          </nb-card-body>
+        </nb-card>
+      </nb-card-front>
+
+      <nb-card-back>
+        <nb-card accent="warning">
+          <nb-card-body class="">
+
+            <div class="row justify-content-center">
+              <div class="col-1 icons">
+                <i class="" data-eva="edit-outline" data-eva-fill="grey" data-eva-width="16"></i>
+                <i class="" data-eva="close-circle-outline" data-eva-fill="red" data-eva-width="16"></i>
+              </div>
+
+              <p class="text-primary todo-desc col-10 align-self-center small"> {{ task.fields.description }} </p>
+
+            </div>
+          </nb-card-body>
+        </nb-card>
+      </nb-card-back>
+    </nb-reveal-card>
+  </div>
+
+</div>
+
+
+
+
+
+<!-- In Progress Section -->
+<!-- Category List Section -->
+<div class="d-flex flex-column align-items-center col-md-3">
+<div class="text-center mt-5 w-75">
+    <div class="lead text-info"> In Progress </div>
+    <hr />
+</div>
+
+  <div class="" *ngIf="tasks">
+    <nb-reveal-card class="w-100" *ngFor="let task of (tasks | status:'IN_PROGRESS')">
+      <nb-card-front>
+        <nb-card accent="info">
+          <nb-card-body>
+
+            <div class="row d-flex align-content-center">
+              <nb-checkbox class="col-1" status="success" value="false"></nb-checkbox>
+              <div class="h6 text-primary col-10 m-0 align-self-center"> {{ task.fields.title }} </div>
+            </div>
+
+          </nb-card-body>
+        </nb-card>
+      </nb-card-front>
+
+      <nb-card-back>
+        <nb-card accent="info">
+          <nb-card-body class="">
+
+            <div class="row justify-content-center">
+              <div class="col-1 icons">
+                <i class="" data-eva="edit-outline" data-eva-fill="grey" data-eva-width="16"></i>
+                <i class="" data-eva="close-circle-outline" data-eva-fill="red" data-eva-width="16"></i>
+              </div>
+
+              <p class="text-primary todo-desc col-10 align-self-center small"> {{ task.fields.description }} </p>
+
+            </div>
+          </nb-card-body>
+        </nb-card>
+      </nb-card-back>
+    </nb-reveal-card>
+  </div>
+
+</div>
+
+
+
+  </div>
+</div>
+
+
 <div class="container">
-  <div class="text-center display-4">
-    <h1>Tasks</h1>
-  </div>
-    <hr><br>
+    <div class="row d-flex justify-content-start">
+        <!-- Completed Section -->
+        <!-- Category List Section -->
+        <div class="d-flex flex-column align-items-center">
+        <div class="text-center mt-5 w-75">
+            <div class="lead text-success"> Completed </div>
+            <hr />
+        </div>
 
-    <div class="d-flex justify-content-around">
-      <button class="btn btn-secondary" routerLink="/">Home</button>
-      <button class="btn btn-primary" (click)="logout()">Log out</button>
+          <div class="" *ngIf="tasks">
+            <nb-reveal-card class="w-100" *ngFor="let task of (tasks | status:'COMPLETED')">
+              <nb-card-front>
+                <nb-card accent="success">
+                  <nb-card-body>
+
+                    <div class="row d-flex align-content-center">
+                      <nb-checkbox class="col-1" status="success" value="false"></nb-checkbox>
+                      <div class="h6 text-primary col-10 m-0 align-self-center"> {{ task.fields.title }} </div>
+                    </div>
+
+                  </nb-card-body>
+                </nb-card>
+              </nb-card-front>
+
+              <nb-card-back>
+                <nb-card accent="success">
+                  <nb-card-body class="">
+
+                    <div class="row justify-content-center">
+                      <div class="col-1 icons">
+                        <i class="" data-eva="edit-outline" data-eva-fill="grey" data-eva-width="16"></i>
+                        <i class="" data-eva="close-circle-outline" data-eva-fill="red" data-eva-width="16"></i>
+                      </div>
+
+                      <p class="text-primary todo-desc col-10 align-self-center small"> {{ task.fields.description }} </p>
+
+                    </div>
+                  </nb-card-body>
+                </nb-card>
+              </nb-card-back>
+            </nb-reveal-card>
+          </div>
+
+        </div>
+
+
     </div>
-
-<div class="d-flex justify-content-center">
-  <div class="d-flex flex-column w-75">
-
-  <div class="card w-75 mt-2 mx-auto">
-    <div class="card-body">
-      <h5 class="card-title text-center"># of Tasks here</h5>
-      <div>Task One</div>
-      <div>Task Two</div>
-      <div>Task Three</div>
-    </div>
-  </div>
-
-  </div>
 </div>
 
-
+<!-- End of CDK_DragDrop container -->
 </div>
+
+  </nb-layout-column>
+
+</nb-layout>

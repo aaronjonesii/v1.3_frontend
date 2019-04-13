@@ -14,6 +14,8 @@ import { TodoComponent } from './pages/todo/todo.component';
 import { AuthGuardService } from './core/services/authenticationguard.service';
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { BottomSheetComponent } from "./pages/home/bottom-sheet/bottom-sheet.component";
+import { WebsocketService } from './core/services/websocket.service';
+import { TasksService } from './core/services/tasks.service';
 
 @NgModule({
   declarations: [
@@ -22,16 +24,19 @@ import { BottomSheetComponent } from "./pages/home/bottom-sheet/bottom-sheet.com
     TodoComponent,
     BottomSheetComponent
   ],
-  imports: [
-    BrowserModule,
+    imports: [
+        BrowserModule,
 
-    AppRoutingModule,
-    SharedModule.forRoot(),
-    NgbModule.forRoot(),
+        AppRoutingModule,
+        SharedModule.forRoot(),
+        NgbModule.forRoot(),
+        SharedModule,
 
-  ],
+    ],
   providers: [
     AuthGuardService,
+    WebsocketService,
+    TasksService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,
