@@ -35,7 +35,7 @@
 
           <div class="row d-flex align-content-center">
             <nb-checkbox class="col-1" status="success" value="false"></nb-checkbox>
-            <div class="h6 text-primary col-10 m-0 align-self-center"> {{ task.fields.title }} </div>
+            <div (click)="deleteTask(task.fields)" class="h6 text-primary col-10 m-0 align-self-center"> {{ task.fields.title }} </div>
           </div>
 
         </nb-card-body>
@@ -46,13 +46,9 @@
       <nb-card accent="danger">
         <nb-card-body class="">
 
-          <div class="row justify-content-center">
-            <div class="col-1 icons">
-              <i class="" data-eva="edit-outline" data-eva-fill="grey" data-eva-width="16"></i>
-              <i class="" data-eva="close-circle-outline" data-eva-fill="red" data-eva-width="16"></i>
-            </div>
+          <div class="row d-flex justify-content-center">
 
-            <p class="text-primary todo-desc col-10 align-self-center small"> {{ task.fields.description }} </p>
+            <button class="btn btn-danger" (click)="deleteTask(task.fields)">Delete Task</button>
 
           </div>
         </nb-card-body>

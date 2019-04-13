@@ -4,8 +4,10 @@ import { Store } from '@ngrx/store';
 import { AppState, selectTasksState } from '../../app.state';
 import { LogOut} from '../../shared/auth/state/auth.actions';
 import { TasksService } from '../../core/services/tasks.service';
-import { Tasks } from '../../shared/models/tasks';
+import {Task, Tasks} from '../../shared/models/tasks';
 import { InitializeWebsocketConnection, RequestUserTasks, WebsocketListener } from './state/tasks.actions';
+
+declare var eva: any;
 
 @Component({
   selector: 'anon-todo',
@@ -37,10 +39,17 @@ export class TodoComponent implements OnInit {
   ngOnInit() {
     // if (!this.isAuthenticated) { this.store.dispatch(new CheckAuthentication()); }
     this.store.dispatch( new RequestUserTasks() );
+
+    // Because Eva icons are used in this component
+    setTimeout(() => eva.replace(), 1000); // Not sure why I have to delay this...
   }
 
   logout(): void { this.store.dispatch(new LogOut); }
 
   refreshTasks() { this.store.dispatch( new RequestUserTasks() ); }
+
+  deleteTask(task: Task) {
+    console.log('Deleted Task => ', task);
+  }
 
 }
