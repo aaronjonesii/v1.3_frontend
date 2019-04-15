@@ -1,0 +1,44 @@
+<nb-card>
+  <nb-card-header>
+    Add New Task
+  </nb-card-header>
+  <nb-card-body>
+
+    <form>
+
+      <div class="form-group">
+        <label for="taskTitle">Task Title:</label>
+        <input type="text" class="form-control" id="taskTitle" placeholder="Example input" nbInput [(ngModel)]="task.title" name="task_title">
+      </div>
+
+      <div class="form-group">
+        <label for="taskDescription">Task Description:</label>
+        <textarea type="text" class="form-control" id="taskDescription" placeholder="Another input" nbInput [(ngModel)]="task.description" name="task_description"></textarea>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <nb-select placeholder="Select Task Status" (selected)="task.status" [(ngModel)]="task.status" name="task_status">
+            <nb-option value="BACKLOG">Backlog</nb-option>
+            <nb-option value="UP_NEXT">Up Next</nb-option>
+            <nb-option value="TODO">ToDo</nb-option>
+            <nb-option value="IN_PROGRESS">In Progress</nb-option>
+            <nb-option value="COMPLETED">Completed</nb-option>
+          </nb-select>
+        </div>
+        <div class="col">
+          <input type="text" class="form-control" placeholder="Tags" nbInput [(ngModel)]="task.tags" name="task_tags">
+        </div>
+      </div>
+
+    </form>
+
+  </nb-card-body>
+
+  <nb-card-footer>
+    <div class="d-flex justify-content-around">
+      <button (click)="updateTask(task)" class="btn btn-success"> Confirm </button>
+      <button (click)="close()" class="btn btn-danger"> Cancel </button>
+    </div>
+  </nb-card-footer>
+</nb-card>

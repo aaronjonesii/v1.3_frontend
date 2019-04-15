@@ -24,14 +24,18 @@ import { CustomSerializer } from './shared/utils/storerouter';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthEffects } from './shared/auth/state/auth.effects';
 import { TasksEffects } from './pages/todo/state/tasks.effects';
+import { AddTaskComponent } from './pages/todo/addtask/addtask.component';
+import { EditTaskComponent } from './pages/todo/edittask/edittask.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     TodoComponent,
+    AddTaskComponent,
     BottomSheetComponent,
     ...AUTH_COMPONENTS,
+    EditTaskComponent,
   ],
     imports: [
         BrowserModule,

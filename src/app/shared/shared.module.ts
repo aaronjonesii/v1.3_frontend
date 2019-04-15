@@ -30,6 +30,8 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { BottomSheetComponent } from "../pages/home/bottom-sheet/bottom-sheet.component";
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { StatusPipe } from './pipes/status.pipe';
+import { AddTaskComponent } from '../pages/todo/addtask/addtask.component';
+import {EditTaskComponent} from '../pages/todo/edittask/edittask.component';
 
 const NB_MODULES = [
   NbCardModule,
@@ -73,7 +75,7 @@ const BASE_MODULES = [ CommonModule, HttpClientModule, BrowserAnimationsModule, 
 
 const COMPONENTS = [ ];
 
-const ENTRY_COMPONENTS = [ BottomSheetComponent ];
+const ENTRY_COMPONENTS = [ BottomSheetComponent, AddTaskComponent, EditTaskComponent ];
 
 const PIPES = [ EvaPipe, ];
 

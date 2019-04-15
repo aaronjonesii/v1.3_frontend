@@ -14,6 +14,9 @@ import { Observable, of } from 'rxjs';
 import { catchError, concatMap, flatMap, map, mapTo, mergeMap, switchMap, tap } from 'rxjs/operators';
 import { WebsocketService } from '../../../core/services/websocket.service';
 import { TasksService } from '../../../core/services/tasks.service';
+import {CheckSession} from '../../../shared/auth/state/auth.actions';
+import {Store} from '@ngrx/store';
+import {AppState} from '../../../app.state';
 
 @Injectable()
 export class TasksEffects {
@@ -29,7 +32,10 @@ export class TasksEffects {
 @Effect({ dispatch: false })
   InitializeWebsocketConnection: Observable<any> = this.actions.pipe(
     ofType(TasksActionTypes.INITIALIZE_WEBSOCKET_CONNECTION),
-    tap(() => this.websocketService.initializeWebsocketConnection() ),
+    tap(() => {
+        this.authService.checkifTokenExpired();
+        this.websocketService.initializeWebsocketConnection();
+    } ),
     // tap(() => alert('InitializeWebsocketConnection Effect...') ),
   );
 
@@ -56,6 +62,9 @@ export class TasksEffects {
       switchMap(() => this.websocketService.socket$.pipe(
           map((msg: any) => {
                   if (msg.type === 'TASKS') { return new ReceivedUserTasks(msg.data);
+                  } else if (msg.type === 'TASK_UPDATED') { return new ReceivedUserTasks(msg.data);
+                  } else if (msg.type === 'DELETE_CONFIRMATION') { return new ReceivedUserTasks(msg.data);
+                  } else if (msg.type === 'DELETE FAILED') { alert('From Websocket Listener, Deletion of the following task failed => ' + msg.data);
                   } else { console.log('Received  message from websocket server => ', msg); }
                 }),
           // catchError((error) => of( alert('Error from Websocket Listener => ' + JSON.stringify(error)) )), // {"isTrusted":true}

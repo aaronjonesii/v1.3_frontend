@@ -6,9 +6,9 @@ import { webSocket } from 'rxjs/webSocket';
 
 const BASE_URL = 'ws://localhost:8000/ws/tasks/';
 
-interface Message {
+export interface Message {
   type: string;
-  data?: string;
+  data?: any;
   error?: string;
 }
 
