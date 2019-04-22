@@ -1,0 +1,41 @@
+<nb-layout>
+  <nb-layout-column>
+    <div>
+
+    <div class="container-fluid">
+    <!--  <div class="row d-flex justify-content-around" cdkDropListGroup>-->
+      <div class="row d-flex justify-content-around">
+
+    <!--<button class="btn btn-success mr-3" (click)="openAddTaskModal()">Add Task</button>-->
+
+    <!-- BackLog Section -->
+    <anon-task-column class="d-flex flex-column align-items-center col-md-3" status="BACKLOG" [tasks]="tasks"></anon-task-column>
+
+    <!-- UpNext Section -->
+    <anon-task-column class="d-flex flex-column align-items-center col-md-3" status="UP_NEXT" [tasks]="tasks"></anon-task-column>
+
+    <!-- ToDo Section -->
+    <anon-task-column class="d-flex flex-column align-items-center col-md-3" status="TODO" [tasks]="tasks"></anon-task-column>
+
+    <!-- In Progress Section -->
+    <anon-task-column class="d-flex flex-column align-items-center col-md-3" status="IN_PROGRESS" [tasks]="tasks"></anon-task-column>
+
+
+
+      </div>
+    </div>
+
+
+    <div class="container">
+        <div class="row d-flex justify-content-start">
+            <!-- Completed Section -->
+            <anon-task-column class="d-flex flex-column align-items-center col-md-10" status="COMPLETED" [tasks]="tasks"></anon-task-column>
+
+
+        </div>
+    </div>
+
+    </div>
+
+  </nb-layout-column>
+</nb-layout>

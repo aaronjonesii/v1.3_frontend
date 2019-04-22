@@ -6,7 +6,7 @@ import { NbDialogRef } from '@nebular/theme';
 @Component({
   selector: 'anon-addtask',
   templateUrl: './addtask.component.html',
-  styleUrls: ['./addtask.component.css']
+  styleUrls: ['./addtask.component.scss']
 })
 export class AddTaskComponent implements OnInit {
 
@@ -27,8 +27,11 @@ export class AddTaskComponent implements OnInit {
   }
 
   createTask(task: any) {
-    this.tasksService.createTask(task);
-    this.close();
+    // TODO: Create Form validation functions
+    if (task.title && task.description) {
+      this.tasksService.createTask(task);
+      this.close();
+    } else { alert('Task must have a title and description...'); }
   }
 
   close() {

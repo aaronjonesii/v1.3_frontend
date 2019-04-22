@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { TasksService } from '../../../core/services/tasks.service';
-import { NbDialogRef } from '@nebular/theme';
+import { NbDialogRef, NbDialogService } from '@nebular/theme';
 import { Task } from 'src/app/shared/models/tasks';
+import { XorComponent } from '../xor/xor.component';
 
 @Component({
   selector: 'anon-edittask',
   templateUrl: './edittask.component.html',
-  styleUrls: ['./edittask.component.css']
+  styleUrls: ['./edittask.component.scss']
 })
 export class EditTaskComponent implements OnInit {
 
@@ -14,17 +15,24 @@ export class EditTaskComponent implements OnInit {
 
   constructor(
       private tasksService: TasksService,
-      protected dialogRef: NbDialogRef<any>
+      protected dialogRef: NbDialogRef<any>,
+      private dialogService: NbDialogService,
   ) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   updateTask(task: any) {
     // this.tasksService.createTask(task);
     // alert('From editTask component, the task that will be updated => ' + JSON.stringify(task));
-    this.tasksService.updateTask(task)
-    this.close();
+    // TODO: Create Form validation functions
+    if (task.title && task.description) {
+      this.tasksService.updateTask(task);
+      this.close();
+    } else { alert('Task must have a title and description...'); }
+  }
+
+  deleteTask(task: Task) {
+    this.dialogService.open(XorComponent, { context: { task: task } });
   }
 
   close() {

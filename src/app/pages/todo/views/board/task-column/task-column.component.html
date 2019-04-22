@@ -1,0 +1,13 @@
+<!-- Category List Section -->
+    <div class="text-center mt-5 w-75">
+        <div class="lead h1" [ngClass]="title_color"> {{ title }} </div>
+        <hr />
+    </div>
+<!--<div class="w-100" cdkDropList [cdkDropListData]="tasks" (cdkDropListDropped)="drop($event)">-->
+<div class="w-100">
+    <div *ngIf="tasks">
+        <div *ngFor="let task of (tasks | status:status)">
+          <anon-task [accent_color]="accent_color" [status_color]="status_color" [task]="task" cdkDrag></anon-task>
+        </div>
+    </div>
+</div>

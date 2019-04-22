@@ -4,11 +4,11 @@ import { Store } from '@ngrx/store';
 import { AppState, selectTasksState } from '../../app.state';
 import { LogOut} from '../../shared/auth/state/auth.actions';
 import { TasksService } from '../../core/services/tasks.service';
-import { Task, Tasks } from '../../shared/models/tasks';
 import { InitializeWebsocketConnection, RequestUserTasks, WebsocketListener } from './state/tasks.actions';
-import { NbDialogService } from '@nebular/theme';
+import { NbDialogService, NbSidebarService } from '@nebular/theme';
 import { AddTaskComponent } from './addtask/addtask.component';
-import { EditTaskComponent } from './edittask/edittask.component';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { SIDEBAR_MENU_ITEMS } from './sidebar-menu';
 
 declare var eva: any;
 
@@ -21,23 +21,17 @@ export class TodoComponent implements OnInit {
 
   getState: Observable<any>;
   errorMessage = null;
-  tasks: Tasks[]; // TODO: Make value same as the store's tasks using select in the constructor
+  tasks: any; // Tasks[]; // TODO: Make value same as the store's tasks using select in the constructor
+  menu = SIDEBAR_MENU_ITEMS;
 
   constructor(
       private store: Store<AppState>,
       private tasksService: TasksService,
-      private dialogService: NbDialogService
+      private dialogService: NbDialogService,
+      private sidebarService: NbSidebarService,
   ) {
-    this.getState = this.store.select(selectTasksState);
-
-    this.getState.subscribe((state) => {
-      this.errorMessage = state.errorMessage;
-      this.tasks = state.tasks;
-    });
-
     this.store.dispatch( new InitializeWebsocketConnection() );
     this.store.dispatch( new WebsocketListener() );
-
   }
 
   ngOnInit() {
@@ -49,20 +43,18 @@ export class TodoComponent implements OnInit {
     setInterval(() => eva.replace(), 200);
   }
 
+  toggleSidebar() {
+    this.sidebarService.toggle(true, 'todo-sidebar');
+    return false;
+  }
+
   logout(): void { this.store.dispatch(new LogOut); }
 
   refreshTasks() { this.store.dispatch( new RequestUserTasks() ); }
-
-  deleteTask(task: Task) {
-    this.tasksService.deleteTask(task);
-  }
 
   openAddTaskModal() {
       this.dialogService.open(AddTaskComponent);
   }
 
-  openEditTaskModal(task: Task) {
-    this.dialogService.open(EditTaskComponent, { context: { task: task } });
-  }
 
 }

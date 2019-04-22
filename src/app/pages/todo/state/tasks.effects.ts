@@ -69,7 +69,13 @@ export class TasksEffects {
                 }),
           // catchError((error) => of( alert('Error from Websocket Listener => ' + JSON.stringify(error)) )), // {"isTrusted":true}
           // catchError((error) => of( alert('Error from Websocket Listener => ' + error) )), // [object CloseEvent]
-          catchError((error) => { if (error.code === 1006) { return of(new WebsocketConnectionClosed(error)); } else { alert('Error from Websocket Listener other than 1006 error.code => ' + error); } } )  , // [object CloseEvent]
+          catchError((error) => {
+              if (error.code === 1006) {
+                  return of(new WebsocketConnectionClosed(error));
+              } else if (error.code === 1011) { alert('Check Redis-Server => server is terminating the connection because' +
+                  ' it encountered an unexpected condition that prevented it from fulfilling the request');
+              } else { alert('Error from Websocket Listener other than 1006 error.code => ' + error.code + ' => ' + JSON.stringify(error)); }
+          } )  , // [object CloseEvent]
       ) ),
   );
 

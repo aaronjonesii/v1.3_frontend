@@ -1,6 +1,9 @@
-<nb-card>
+<nb-card class="w-100">
   <nb-card-header>
-    Add New Task
+    <div class="d-flex justify-content-around">
+      <h2> Edit Task </h2>
+      <button (click)="deleteTask(task)" class="btn btn-danger p-1"> <i class="icon nb-trash" style="font-size: 2rem;"></i> </button>
+    </div>
   </nb-card-header>
   <nb-card-body>
 
@@ -13,7 +16,7 @@
 
       <div class="form-group">
         <label for="taskDescription">Task Description:</label>
-        <textarea type="text" class="form-control" id="taskDescription" placeholder="Another input" nbInput [(ngModel)]="task.description" name="task_description"></textarea>
+        <textarea type="text" class="form-control" id="taskDescription" placeholder="Another input" nbInput [(ngModel)]="task.description" name="task_description" required="true"></textarea>
       </div>
 
       <div class="row">
