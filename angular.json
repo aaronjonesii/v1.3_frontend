@@ -133,5 +133,10 @@
       }
     }
   },
-  "defaultProject": "WebApp"
+  "defaultProject": "WebApp",
+  "schematics": {
+    "@schematics/angular:component": {
+      "styleext": "scss"
+    }
+  }
 }

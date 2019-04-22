@@ -26,21 +26,29 @@ import { AuthEffects } from './shared/auth/state/auth.effects';
 import { TasksEffects } from './pages/todo/state/tasks.effects';
 import { AddTaskComponent } from './pages/todo/addtask/addtask.component';
 import { EditTaskComponent } from './pages/todo/edittask/edittask.component';
+import { XorComponent } from './pages/todo/xor/xor.component';
+import { TaskColumnComponent } from './pages/todo/views/board/task-column/task-column.component';
+import { TaskComponent } from './pages/todo/views/board/task-column/task/task.component';
+import { TODO_COMPONENTS, TodoModule } from './pages/todo/todo.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    TodoComponent,
     AddTaskComponent,
     BottomSheetComponent,
     ...AUTH_COMPONENTS,
+    ...TODO_COMPONENTS,
     EditTaskComponent,
+    XorComponent,
+    TaskColumnComponent,
+    TaskComponent,
   ],
     imports: [
         BrowserModule,
-        FormsModule,
+        TodoModule,
         AppRoutingModule,
+        FormsModule,
         SharedModule.forRoot(),
         NgbModule.forRoot(),
         SharedModule,

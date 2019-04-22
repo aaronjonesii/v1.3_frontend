@@ -10,7 +10,7 @@ import {AuthService} from '../../../../core/services/auth.service';
 @Component({
   selector: 'anon-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
 

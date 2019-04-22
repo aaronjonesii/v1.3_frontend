@@ -9,12 +9,12 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { AuthGuardService } from './core/services/authenticationguard.service';
 
 
-
 const routes: Routes = [
+  { path: '', component: HomeComponent, pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'todo', component: TodoComponent, canActivate: [AuthGuardService] },
-  { path: '', component: HomeComponent, pathMatch: 'full' },
+  // { path: 'todo', component: TodoComponent, canActivate: [AuthGuardService] },
+  { path: 'todo', loadChildren: './pages/todo/todo.module#TodoModule', canActivate: [AuthGuardService] },
   { path: '**', redirectTo: '/' },
 ];
 
