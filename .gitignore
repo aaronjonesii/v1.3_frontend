@@ -66,3 +66,6 @@ typings/
 # Mac files
 .DS_Store
 
+# Angular files
+dist/
+
