@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   // { path: 'todo', component: TodoComponent, canActivate: [AuthGuardService] },
-  { path: 'todo', loadChildren: './pages/todo/todo.module#TodoModule', canActivate: [AuthGuardService] },
+  { path: 'todo', loadChildren: './pages/todo/todo.module#TodoModule' },
   { path: '**', redirectTo: '/' },
 ];
 

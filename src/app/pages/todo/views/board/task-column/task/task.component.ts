@@ -11,7 +11,7 @@ import { NbDialogService } from '@nebular/theme';
 })
 export class TaskComponent implements OnInit {
 
-  @Input() task: Task;
+  @Input() task: any;
   @Input() status_color: string;
   @Input() accent_color: string;
 
