@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Task, Tasks } from '../../../../../../shared/models/tasks';
-import { EditTaskComponent } from '../../../../edittask/edittask.component';
-import { XorComponent } from '../../../../xor/xor.component';
+import { EditTaskComponent } from '../../../../functions/edittask/edittask.component';
+import { XorComponent } from '../../../../functions/xor/xor.component';
 import { NbDialogService } from '@nebular/theme';
 
 @Component({

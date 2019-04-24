@@ -13,47 +13,47 @@
     </nb-sidebar>
   <nb-layout-column>
 
-    <nb-card *ngIf="show_backlog" accent="danger" size="xsmall">
+    <nb-card class="max-height-25" *ngIf="show_backlog" accent="danger">
       <nb-card-body>
         <h3> Backlog </h3>
-        <nb-list *ngIf="tasks">
+        <nb-list class="mt-3" *ngIf="tasks">
           <nb-list-item class="p-2" *ngFor="let task of (tasks | status:'BACKLOG')"> {{ task.fields.title }} </nb-list-item>
         </nb-list>
       </nb-card-body>
     </nb-card>
 
-    <nb-card *ngIf="show_up_next" accent="primary">
+    <nb-card class="max-height-25" *ngIf="show_up_next" accent="primary">
       <nb-card-body>
         <h3> Up Next </h3>
-        <nb-list *ngIf="tasks">
+        <nb-list class="mt-3" *ngIf="tasks">
           <nb-list-item *ngFor="let task of (tasks | status:'UP_NEXT')"> {{ task.fields.title }} </nb-list-item>
         </nb-list>
       </nb-card-body>
     </nb-card>
 
-    <nb-card *ngIf="show_todo" accent="warning">
+    <nb-card class="max-height-25" *ngIf="show_todo" accent="warning">
       <nb-card-body>
         <h3> ToDo </h3>
-        <nb-list>
+        <nb-list class="mt-3" *ngIf="tasks">
           <nb-list-item *ngFor="let task of (tasks | status:'TODO')"> {{ task.fields.title }} </nb-list-item>
         </nb-list>
       </nb-card-body>
     </nb-card>
 
-    <nb-card *ngIf="show_in_progress" accent="info">
+    <nb-card class="max-height-25" *ngIf="show_in_progress" accent="info">
       <nb-card-body>
         <h3> In Progress </h3>
-        <nb-list *ngIf="tasks">
+        <nb-list class="mt-3" *ngIf="tasks">
           <nb-list-item *ngFor="let task of (tasks | status:'IN_PROGRESS')"> {{ task.fields.title }} </nb-list-item>
         </nb-list>
       </nb-card-body>
     </nb-card>
 
 
-    <nb-card *ngIf="show_completed" accent="success" size="xsmall">
+    <nb-card class="max-height-25" *ngIf="show_completed" accent="success">
       <nb-card-body>
         <h3> Done </h3>
-        <nb-list *ngIf="tasks">
+        <nb-list class="mt-3" *ngIf="tasks">
           <nb-list-item class="p-2" *ngFor="let task of (tasks | status:'COMPLETED')"> {{ task.fields.title }} </nb-list-item>
         </nb-list>
       </nb-card-body>

@@ -4,7 +4,8 @@ import { Token } from '../../shared/models/tokens';
 import { WebSocketSubject } from 'rxjs/webSocket';
 import { webSocket } from 'rxjs/webSocket';
 
-const BASE_URL = 'ws://localhost:8000/ws/tasks/';
+// const BASE_URL = 'ws://localhost:8000/ws/tasks/';
+const BASE_URL = 'ws://api.anonsys.tech/ws/tasks/';
 
 export interface Message {
   type: string;

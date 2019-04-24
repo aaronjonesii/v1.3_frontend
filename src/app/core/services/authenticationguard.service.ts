@@ -5,7 +5,7 @@ import { AuthService } from './auth.service';
 import { Store } from '@ngrx/store';
 import { AppState, selectAuthState } from '../../app.state';
 import { Observable } from 'rxjs';
-import {CheckAuthentication} from '../../shared/auth/state/auth.actions';
+import { CheckAuthentication } from '../../shared/auth/state/auth.actions';
 
 
 @Injectable()

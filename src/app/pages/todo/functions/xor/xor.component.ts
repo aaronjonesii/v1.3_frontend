@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {NbDialogRef} from '@nebular/theme';
-import {TasksService} from '../../../core/services/tasks.service';
-import {Task} from '../../../shared/models/tasks';
+import {TasksService} from '../../../../core/services/tasks.service';
+import {Task} from '../../../../shared/models/tasks';
 
 @Component({
   selector: 'anon-xor',

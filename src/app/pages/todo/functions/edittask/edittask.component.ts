@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TasksService } from '../../../core/services/tasks.service';
+import { TasksService } from '../../../../core/services/tasks.service';
 import { NbDialogRef, NbDialogService } from '@nebular/theme';
 import { Task } from 'src/app/shared/models/tasks';
 import { XorComponent } from '../xor/xor.component';

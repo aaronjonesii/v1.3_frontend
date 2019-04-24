@@ -13,7 +13,8 @@ import {AppState} from '../../app.state';
 })
 export class AuthService {
 
-  private BASE_URL = 'http://localhost:8000';
+  // private BASE_URL = 'http://localhost:8000';
+  private BASE_URL = 'http://api.anonsys.tech';
   redirectURL: string;
   // TODO: Move redirectURL to store w/router-store
 

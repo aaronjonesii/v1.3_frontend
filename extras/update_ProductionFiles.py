@@ -12,7 +12,7 @@ def isProductionfile(file, prod_files, prod_file_prefixs):
 
 
 def copytoWebApp(file):
-    source = os.path.join(new_production_files_dir, file)
+    source = os.path.join(angular_output_location, file)
     destination = os.path.join(live_webapp_dir, file)
     shutil.copyfile(source, destination)
     print(f'Copied file {source} -> {destination}')
@@ -32,12 +32,13 @@ def fileExists(file): return os.path.isfile(file)
 
 
 if __name__ == '__main__':
-    new_production_files_dir = '/root/frontend/dist/'
+
+    angular_output_location = '/root/frontend/dist/'
     live_webapp_dir = '/home/anonsys/public_html/'
     # dir = os.path.dirname(os.path.realpath(__file__))
 
     old_webapp_files = getallFiles(live_webapp_dir)
-    new_webapp_files = getallFiles(new_production_files_dir)
+    new_webapp_files = getallFiles(angular_output_location)
 
     prod_files = (
         '3rdpartylicenses.txt',

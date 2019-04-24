@@ -30,9 +30,9 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { BottomSheetComponent } from "../pages/home/bottom-sheet/bottom-sheet.component";
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { StatusPipe } from './pipes/status.pipe';
-import { AddTaskComponent } from '../pages/todo/addtask/addtask.component';
-import { EditTaskComponent} from '../pages/todo/edittask/edittask.component';
-import { XorComponent } from '../pages/todo/xor/xor.component';
+import { AddTaskComponent } from '../pages/todo/functions/addtask/addtask.component';
+import { EditTaskComponent} from '../pages/todo/functions/edittask/edittask.component';
+import { XorComponent } from '../pages/todo/functions/xor/xor.component';
 
 const NB_MODULES = [
   NbCardModule,

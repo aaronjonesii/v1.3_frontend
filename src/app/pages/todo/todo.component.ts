@@ -6,7 +6,7 @@ import { LogOut} from '../../shared/auth/state/auth.actions';
 import { TasksService } from '../../core/services/tasks.service';
 import { InitializeWebsocketConnection, RequestUserTasks, WebsocketListener } from './state/tasks.actions';
 import { NbDialogService, NbSidebarService } from '@nebular/theme';
-import { AddTaskComponent } from './addtask/addtask.component';
+import { AddTaskComponent } from './functions/addtask/addtask.component';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { SIDEBAR_MENU_ITEMS } from './sidebar-menu';
 
