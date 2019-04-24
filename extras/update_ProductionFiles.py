@@ -1,4 +1,3 @@
-# TODO: TOo much work dor this.. Just going to point the Apache directory to the build directory.s
 import os
 import shutil
 
@@ -33,7 +32,7 @@ def fileExists(file): return os.path.isfile(file)
 
 
 if __name__ == '__main__':
-    new_production_files_dir = '/root/WebApp/anonsys.tech/SPA/dist/SPA/'
+    new_production_files_dir = '/root/frontend/dist/'
     live_webapp_dir = '/home/anonsys/public_html/'
     # dir = os.path.dirname(os.path.realpath(__file__))
 
