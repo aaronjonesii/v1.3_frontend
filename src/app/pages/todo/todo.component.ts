@@ -23,6 +23,10 @@ export class TodoComponent implements OnInit {
   errorMessage = null;
   tasks: any; // Tasks[]; // TODO: Make value same as the store's tasks using select in the constructor
   menu = SIDEBAR_MENU_ITEMS;
+  view_tabs: any[] = [
+    { title: 'Board View', icon: 'nb-layout-two-column', responsive: true, route: './board', },
+    { title: 'Detail List View', icon: 'nb-list', responsive: true, route: [ './list' ], },
+  ];
 
   constructor(
       private store: Store<AppState>,
@@ -40,7 +44,7 @@ export class TodoComponent implements OnInit {
 
     // Because Eva icons are used in this component
     // Not sure why I have to delay this... but I made it reoccur for when the tasks are updated or added after the initial load.
-    setInterval(() => eva.replace(), 200);
+    eva.replace();
   }
 
   toggleSidebar() {
@@ -55,6 +59,7 @@ export class TodoComponent implements OnInit {
   openAddTaskModal() {
       this.dialogService.open(AddTaskComponent);
   }
+
 
 
 }
