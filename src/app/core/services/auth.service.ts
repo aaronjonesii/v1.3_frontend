@@ -7,6 +7,7 @@ import { Token, Tokens } from '../../shared/models/tokens';
 import {RefreshSession, SessionExpired, SessionSuccess} from '../../shared/auth/state/auth.actions';
 import {Store} from '@ngrx/store';
 import {AppState} from '../../app.state';
+import {environment} from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ import {AppState} from '../../app.state';
 export class AuthService {
 
   // private BASE_URL = 'http://localhost:8000';
-  private BASE_URL = 'http://api.anonsys.tech';
+  BASE_URL: string = 'http://' + environment.BACKEND_DOMAIN;
   redirectURL: string;
   // TODO: Move redirectURL to store w/router-store
 

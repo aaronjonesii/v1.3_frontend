@@ -1,19 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './shared/auth/components/login/login.component';
 import { SignupComponent } from './shared/auth/components/signup/signup.component';
-import { TodoComponent } from './pages/todo/todo.component';
-import { StoreRouterConnectingModule } from '@ngrx/router-store';
-import { AuthGuardService } from './core/services/authenticationguard.service';
-
 
 const routes: Routes = [
-  { path: '', component: HomeComponent, pathMatch: 'full' },
+  { path: '', loadChildren: './pages/home/home.module#HomeModule' },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   // { path: 'todo', component: TodoComponent, canActivate: [AuthGuardService] },
+  { path: 'admin', loadChildren: './pages/admin/admin.module#AdminModule' },
   { path: 'todo', loadChildren: './pages/todo/todo.module#TodoModule' },
   { path: '**', redirectTo: '/' },
 ];

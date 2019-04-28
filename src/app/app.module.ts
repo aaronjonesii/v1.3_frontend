@@ -30,6 +30,9 @@ import { XorComponent } from './pages/todo/functions/xor/xor.component';
 import { TaskColumnComponent } from './pages/todo/views/board/task-column/task-column.component';
 import { TaskComponent } from './pages/todo/views/board/task-column/task/task.component';
 import { TODO_COMPONENTS, TodoModule } from './pages/todo/todo.module';
+import { AdminComponent } from './pages/admin/admin.component';
+import { ADMIN_COMPONENTS, AdminModule } from './pages/admin/admin.module';
+import { HOME_COMPONENTS, HomeModule } from './pages/home/home.module';
 
 @NgModule({
   declarations: [
@@ -38,14 +41,19 @@ import { TODO_COMPONENTS, TodoModule } from './pages/todo/todo.module';
     AddTaskComponent,
     BottomSheetComponent,
     ...AUTH_COMPONENTS,
+    ...ADMIN_COMPONENTS,
+    ...HOME_COMPONENTS,
     ...TODO_COMPONENTS,
     EditTaskComponent,
     XorComponent,
     TaskColumnComponent,
     TaskComponent,
+    AdminComponent,
   ],
     imports: [
         BrowserModule,
+        AdminModule,
+        HomeModule,
         TodoModule,
         AppRoutingModule,
         FormsModule,

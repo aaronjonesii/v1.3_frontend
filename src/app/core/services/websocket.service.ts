@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Observable, Observer, Subject } from 'rxjs';
 import { Token } from '../../shared/models/tokens';
-import { WebSocketSubject } from 'rxjs/webSocket';
 import { webSocket } from 'rxjs/webSocket';
+import { environment } from '../../../environments/environment';
 
 // const BASE_URL = 'ws://localhost:8000/ws/tasks/';
-const BASE_URL = 'ws://api.anonsys.tech/ws/tasks/';
+// const BASE_URL = 'ws://api.anonsys.tech/ws/tasks/';
+const WEBSOCKET_URL: string = 'ws://' + environment.BACKEND_DOMAIN + '/ws/tasks/';
 
 export interface Message {
   type: string;
@@ -25,7 +25,7 @@ export class WebsocketService {
 
   initializeWebsocketConnection() {
     this.token = JSON.parse(localStorage.getItem('token'));
-    this.socket$ = webSocket(BASE_URL + '?token=' + this.token.access);
+    this.socket$ = webSocket(WEBSOCKET_URL + '?token=' + this.token.access);
   }
 
 }
