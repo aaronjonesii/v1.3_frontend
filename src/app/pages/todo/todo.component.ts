@@ -23,6 +23,10 @@ export class TodoComponent implements OnInit {
   errorMessage = null;
   tasks: any; // Tasks[]; // TODO: Make value same as the store's tasks using select in the constructor
   menu = SIDEBAR_MENU_ITEMS;
+   view_tabs: any[] = [
+    { title: 'Board View', icon: 'nb-layout-two-column', responsive: true, route: './board', },
+    { title: 'Detail List View', icon: 'nb-list', responsive: true, route: [ './list' ], },
+  ];
 
   constructor(
       private store: Store<AppState>,

@@ -3,9 +3,11 @@ import { WebsocketService } from './websocket.service';
 import { Subject } from 'rxjs';
 import { Task } from '../../shared/models/tasks';
 import { Message } from './websocket.service';
+import { environment } from '../../../environments/environment';
 
 // const SERVER_URL = 'ws://localhost:8000/ws/tasks/';
-const SERVER_URL = 'ws://api.anonsys.tech/ws/tasks/';
+// const SERVER_URL = 'ws://api.anonsys.tech/ws/tasks/';
+const SERVER_URL: string = `ws://${environment.BACKEND_DOMAIN}/ws/tasks/`;
 
 @Injectable({
   providedIn: 'root'
