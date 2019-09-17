@@ -78,7 +78,7 @@ const COMPONENTS = [ ];
 
 const ENTRY_COMPONENTS = [ BottomSheetComponent, AddTaskComponent, EditTaskComponent, XorComponent ];
 
-const PIPES = [ EvaPipe, ];
+const PIPES = [ EvaPipe, StatusPipe ];
 
 const NB_THEME_PROVIDERS = [
   ...NbThemeModule.forRoot(
@@ -96,8 +96,8 @@ const NB_THEME_PROVIDERS = [
 
 @NgModule({
   imports: [ ...BASE_MODULES, ...NB_MODULES, ...MAT_MODULES, AuthModule ],
-    exports: [...BASE_MODULES, ...NB_MODULES, ...MAT_MODULES, ...COMPONENTS, ...PIPES, StatusPipe, ],
-  declarations: [...PIPES, ...COMPONENTS, StatusPipe  ],
+    exports: [...BASE_MODULES, ...NB_MODULES, ...MAT_MODULES, ...COMPONENTS, ...PIPES ],
+  declarations: [...PIPES, ...COMPONENTS ],
   entryComponents: [...ENTRY_COMPONENTS],
 })
 export class SharedModule {
